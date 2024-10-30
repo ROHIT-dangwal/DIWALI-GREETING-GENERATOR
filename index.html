@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      position: absolute;
+      /* margin: 0 25%; */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    form input,
+    button {
+      border-radius: 10px;
+      padding: 5px;
+      margin: 30px;
+    }
+    form button {
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <input
+        type="text"
+        name="message"
+        placeholder="Enter your custom message"
+      />
+      <input type="file" name="avatar" />
+      <button class="btn">GENERATE CARD</button>
+    </form>
+  </body>
+</html>
