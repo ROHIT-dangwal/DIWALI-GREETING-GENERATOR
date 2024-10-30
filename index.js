@@ -1,26 +1,33 @@
 const express = require("express");
 const path = require("path");
 const multer = require("multer");
-
+const { v4: uuidv4 } = require("uuid");
 const app = express();
 const upload = multer({ dest: "./uploads" });
-
-// Serve static files in the 'uploads' folder
+const imageStore = {};
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "uploads", "index.html"));
 });
 
 app.post("/", upload.single("avatar"), (req, res) => {
-  // Display the uploaded image with the correct src path
-  res.send(`<img src="/uploads/${req.file.filename}" alt="Uploaded Image">`);
-  console.log(req.file);
-  console.log(req.body);
+  const uniqueId = uuidv4();
+  imageStore[uniqueId] = req.file.filename;
+  const imageUrl = `http://localhost:3024/${uniqueId}`;
+  res.redirect(imageUrl);
 });
 
-app.get("/card", (req, res) => {
-  res.send("Hello");
+app.get("/:id", (req, res) => {
+  const { id } = req.params;
+  const filename = imageStore[id];
+
+  if (filename) {
+    res.send(
+      `<img width="100px" height="100px" src="/uploads/${filename}" alt="Uploaded Image">`
+    );
+  } else {
+    res.status(404).send("Image not found");
+  }
 });
 
 app.listen(3024, () => {
