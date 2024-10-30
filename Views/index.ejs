@@ -4,6 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Satisfy", cursive;
+        text-transform: capitalize;
+      }
+      body {
+        background-image: url("../uploads/Background.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .info {
+        position: absolute;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        top: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+      }
+      .info img {
+        border-radius: 50%;
+        border: 2px solid black;
+        margin-bottom: 100px;
+      }
+      h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
-  <body></body>
+
+  <body>
+    <div class="info">
+      <img src="/uploads/<%= data.filename %>" alt="Uploaded Image" />
+      <h1><%= data.caption.message %> - " <%= data.caption.sender_name %> "</h1>
+    </div>
+  </body>
 </html>

@@ -4,8 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <style>
+    * {
+      font-family: "Itim", cursive;
+    }
     form {
       display: flex;
       flex-direction: column;
@@ -25,17 +34,26 @@
     form button {
       cursor: pointer;
     }
+    .btn:hover {
+      background-color: #97a197;
+    }
   </style>
   <body>
     <form action="/" method="post" enctype="multipart/form-data">
-      <input type="text" name="sender_name" placeholder="Enter Your  Name" />
+      <input
+        type="text"
+        name="sender_name"
+        placeholder="Enter Your  Name"
+        required
+      />
       <input
         type="text"
         name="message"
         placeholder="Enter your custom message"
+        required
       />
 
-      <input type="file" name="avatar" />
+      <input type="file" name="avatar" required />
       <button class="btn">GENERATE CARD</button>
     </form>
   </body>

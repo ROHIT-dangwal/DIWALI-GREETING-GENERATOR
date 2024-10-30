@@ -12,7 +12,10 @@ app.get("/", (req, res) => {
 
 app.post("/", upload.single("avatar"), (req, res) => {
   const uniqueId = uuidv4();
-  imageStore[uniqueId] = req.file.filename;
+  imageStore[uniqueId] = {
+    filename: req.file.filename,
+    caption: req.body, // Capture the text field
+  };
   const imageUrl = `http://localhost:3024/${uniqueId}`;
   res.redirect(imageUrl);
 });
@@ -22,11 +25,9 @@ app.get("/:id", (req, res) => {
   const filename = imageStore[id];
 
   if (filename) {
-    res.send(
-      `<img width="100px" height="100px" src="/uploads/${filename}" alt="Uploaded Image">`
-    );
+    res.render("index.ejs", { data: filename });
   } else {
-    res.status(404).send("Image not found");
+    res.status(404).send("Enter a valid id");
   }
 });
 
